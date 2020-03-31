@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TimeTracker</string>
+
+
+    <!-- BOTTOM MENU -->
+    <string name="timer_menu_string">Timer</string>
+    <string name="edit_menu_string">Edit</string>
+    <string name="stats_menu_string">Stats</string>
+    <string name="settings_menu_string">Settings</string>
+    <string name="info_menu_string">Info</string>
+</resources>
