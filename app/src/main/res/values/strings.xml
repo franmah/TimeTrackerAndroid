@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TimeTracker</string>
 
+    <!-- MOCK-FILL IN STRINGS -->
+    <string name="test_string">THIS IS A TEST SEE HOW LONG</string>
 
     <!-- BOTTOM MENU -->
     <string name="timer_menu_string">Timer</string>
@@ -8,4 +10,14 @@
     <string name="stats_menu_string">Stats</string>
     <string name="settings_menu_string">Settings</string>
     <string name="info_menu_string">Info</string>
+
+
+    <!-- Add New Task -->
+    <string name="addTask">Add new activity</string>
+    <string name="taskName">Name</string>
+    <string name="nameTooLongError">Name should be less than 20 characters</string>
+
+    <!-- Charts -->
+    <string name="loadingChartText">Loading chart...</string>
+
 </resources>

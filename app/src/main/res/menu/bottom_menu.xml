@@ -5,29 +5,22 @@
         android:id="@+id/timer_menu_item"
         android:title="@string/timer_menu_string"
         android:titleCondensed="@string/timer_menu_string"
-        />
-    <item
-        android:id="@+id/edit_menu_item"
-        android:title="@string/edit_menu_string"
-        android:titleCondensed="@string/edit_menu_string"
+        android:icon="@drawable/ic_menu_filled_timer_v2"
         />
 
     <item
         android:id="@+id/stats_menu_item"
         android:title="@string/stats_menu_string"
         android:titleCondensed="@string/stats_menu_string"
+        android:icon="@drawable/ic_menu_filled_stats"
         />
 
     <item
         android:id="@+id/settings_menu_item"
         android:title="@string/settings_menu_string"
         android:titleCondensed="@string/settings_menu_string"
+        android:icon="@drawable/ic_menu_filled_setting"
         />
 
-    <item
-        android:id="@+id/info_menu_item"
-        android:title="@string/info_menu_string"
-        android:titleCondensed="@string/info_menu_string"
-        />
 
 </menu>

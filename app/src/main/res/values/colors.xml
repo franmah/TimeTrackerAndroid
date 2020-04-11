@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#82AEE1</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#82AEE1</color>
+    <color name="colorBackgroud">#ffffff</color>
     <color name="white">#ffffff</color>
+    <color name="menuBase">#757575</color>
+    <color name="colorError">#C33F38</color>
+
+    <!-- TaskHolder -->
+    <color name="taskHolderCardViewBkg">#F4F4F4</color>
+
 </resources>

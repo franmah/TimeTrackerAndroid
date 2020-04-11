@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/taskHolderCardViewBkg"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="8dp"
+            >
+
+            <TextView
+                android:id="@+id/task_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/test_string"
+                android:gravity="center_vertical"
+                android:textSize="18sp"
+                android:layout_weight="3"/>
+
+            <TextView
+                android:id="@+id/timer_stopwatch_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="00:00:00"
+                android:textSize="18sp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/play_pause_timer_image_view"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_play_timer_black_bgk" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
