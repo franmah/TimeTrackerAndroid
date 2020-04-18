@@ -48,7 +48,7 @@ public class ColumnChartFragment extends Fragment {
                         progressLoadingView.setVisibility(View.GONE);
                     }
                 },
-                500);
+                1000);
     }
 
     private class LoadColumnChartView extends AsyncTask<Void, Void, Cartesian> {

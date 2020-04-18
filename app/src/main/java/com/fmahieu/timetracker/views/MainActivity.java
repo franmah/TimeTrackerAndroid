@@ -1,7 +1,12 @@
 package com.fmahieu.timetracker.views;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -19,20 +25,11 @@ import com.fmahieu.timetracker.views.swipeViews.StatsSwipeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-/*
-    TODO:
-    - customize animation for arrows if you have the patience
-    - add shadow to button
-    - add slide animation (switching between charts)
-
-    task cards:
-
- */
-
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private final String TAG = "__MainActivity";
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
+    Context context;
 
     // Result from AddTaskActivity
     public static String AddTaskResult = "com.fmahieu.MainActivity.AddTaskResult";
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private FloatingActionButton addTaskButton;
 
     // tell fragmentManager which fragment should be displayed
-    private enum MenuViews { Timer, Stats, Settings }
+    private enum MenuViews {Stopwatch, Stats, Settings }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +48,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Log.i(TAG, "MainActivity started");
 
         setContentView(R.layout.main_activity);
+        context = this;
 
         // TODO: remove testing part
         // FOR TESTING
         new AddDummyTasks().AddTasksWithDuration();
         // END OF TESTING
+
+        setTitle(R.string.stopwatch_title);
 
         menuView = findViewById(R.id.bottom_menu_layout);
         menuView.setOnNavigationItemSelectedListener(this);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         addTaskButton = findViewById(R.id.floating_button_addTask);
         addTaskButton.setOnClickListener(this);
 
-        setFragment(MenuViews.Timer);
+        setFragment(MenuViews.Stopwatch);
     }
 
     public void setFragment(MenuViews viewToShow){
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Fragment fragment = fragmentManager.findFragmentById(R.id.main_view_frameLayout);
 
         switch(viewToShow){
-            case Timer:
+            case Stopwatch:
                 fragment = new TasksRecyclerFragment();
                 break;
             case Stats:
@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new StatsSwipeFragment();
                 break;
         }
-
         fragmentManager.beginTransaction().replace(R.id.main_view_frameLayout,fragment).commit();
     }
 
@@ -89,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         this.addTaskButton.setClickable(false); // avoid multiple clicking
         Intent intent = new Intent(this, NewTaskActivity.class);
         startActivityForResult(intent, ADD_TASK_RESULT_CODE);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
@@ -97,11 +97,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.timer_menu_item:
                 this.addTaskButton.setClickable(true);
                 this.addTaskButton.setVisibility(View.VISIBLE);
-                setFragment(MenuViews.Timer);
+                setTitle(R.string.stopwatch_title);
+                setFragment(MenuViews.Stopwatch);
                 return true;
             case R.id.stats_menu_item:
                 this.addTaskButton.setClickable(false);
                 this.addTaskButton.setVisibility(View.GONE);
+                setTitle(R.string.stats_title);
                 setFragment(MenuViews.Stats);
                 return true;
             case R.id.settings_menu_item:
@@ -123,15 +125,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         if (requestCode == ADD_TASK_RESULT_CODE) {
             if(resultCode == Activity.RESULT_OK) {
-                setFragment(MenuViews.Timer);
+                setFragment(MenuViews.Stopwatch);
             }
         }
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
-        setFragment(MenuViews.Timer); // will be called when returning to the activity.
+        setFragment(MenuViews.Stopwatch); // will be called when returning to the activity.
         this.addTaskButton.setClickable(true);
     }
+
+
 }

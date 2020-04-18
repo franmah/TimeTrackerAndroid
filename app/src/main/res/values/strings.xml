@@ -1,23 +1,33 @@
 <resources>
     <string name="app_name">TimeTracker</string>
 
-    <!-- MOCK-FILL IN STRINGS -->
-    <string name="test_string">THIS IS A TEST SEE HOW LONG</string>
+    <!-- Mock (Test) Data -->
+    <string name="test_string">THIS IS A TEST</string>
 
-    <!-- BOTTOM MENU -->
-    <string name="timer_menu_string">Timer</string>
+    <!-- Band Titles -->
+    <string name="stopwatch_title">Stopwatch</string>
+    <string name="stats_title">Statistics</string>
+    <string name="newTask_title">Add a new activity</string>
+
+    <!-- Bottom Menu-->
+    <string name="stopwatch_menu_string">Stopwatch</string>
     <string name="edit_menu_string">Edit</string>
     <string name="stats_menu_string">Stats</string>
     <string name="settings_menu_string">Settings</string>
     <string name="info_menu_string">Info</string>
 
-
     <!-- Add New Task -->
-    <string name="addTask">Add new activity</string>
     <string name="taskName">Name</string>
     <string name="nameTooLongError">Name should be less than 20 characters</string>
 
     <!-- Charts -->
-    <string name="loadingChartText">Loading chart...</string>
+    <string name="loadingChartText">Loading chart…</string>
+
+    <!-- Notifications -->
+    <string name="runningText_notification">running</string>
+    <string name="title_notification">TimeTracker</string>
+    <string name="channel_name">main channel</string>
+    <string name="channel_description">this is the main channel</string>
+    <string name="stop_action_notification">STOP</string>
 
 </resources>

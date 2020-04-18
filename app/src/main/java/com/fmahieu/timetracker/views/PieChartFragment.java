@@ -30,7 +30,6 @@ public class PieChartFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Nullable
@@ -53,7 +52,7 @@ public class PieChartFragment extends Fragment {
                         progressLinearView.setVisibility(View.GONE);
                     }
                 },
-                500);
+                1000);
     }
 
     private class LoadPieChartView extends AsyncTask<Void, Void, Pie> {

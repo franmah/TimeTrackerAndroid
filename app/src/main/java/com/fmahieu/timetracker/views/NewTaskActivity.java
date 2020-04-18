@@ -27,6 +27,7 @@ public class NewTaskActivity extends AppCompatActivity {
 
     private final String NAME_TOO_LONG_ERROR = "Name too long (should be less than 20 character)";
     private final String NAME_ALREADY_EXISTS_ERROR = "Name already exists";
+    private final String EMPTY_NAME = "Name cannot be empty";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,12 @@ public class NewTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isTaskNameValid(taskNameEditText.getText().toString().trim())){
-                    addNewTask(taskNameEditText.getText().toString().trim());
+                    if(taskNameEditText.getText().toString().trim().length() == 0){
+                        taskNameTextInputLayout.setError(EMPTY_NAME);
+                    }
+                    else{
+                        addNewTask(taskNameEditText.getText().toString().trim());
+                    }
                 }
             }
         });
@@ -94,5 +100,11 @@ public class NewTaskActivity extends AppCompatActivity {
         returnIntent.putExtra(MainActivity.AddTaskResult, true);
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    public void onBackPressed(){
+        finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

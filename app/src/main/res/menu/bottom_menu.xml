@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/timer_menu_item"
-        android:title="@string/timer_menu_string"
-        android:titleCondensed="@string/timer_menu_string"
+        android:title="@string/stopwatch_menu_string"
+        android:titleCondensed="@string/stopwatch_menu_string"
         android:icon="@drawable/ic_menu_filled_timer_v2"
         />
 
