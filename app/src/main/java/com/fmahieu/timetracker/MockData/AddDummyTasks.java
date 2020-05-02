@@ -1,6 +1,6 @@
 package com.fmahieu.timetracker.MockData;
 
-import com.fmahieu.timetracker.logic.TimeOperationLogic;
+import com.fmahieu.timetracker.TimeDateLogic.TimeOperationLogic;
 import com.fmahieu.timetracker.models.singletons.Tasks;
 
 import java.time.LocalTime;

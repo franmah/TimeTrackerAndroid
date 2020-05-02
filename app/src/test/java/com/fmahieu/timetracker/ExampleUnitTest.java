@@ -1,6 +1,6 @@
 package com.fmahieu.timetracker;
 
-import com.fmahieu.timetracker.logic.TimeOperationLogic;
+import com.fmahieu.timetracker.TimeDateLogic.TimeOperationLogic;
 
 import org.junit.Test;
 
@@ -63,7 +63,7 @@ public class ExampleUnitTest {
         String duration = timeOperationLogic.getDurationTime(currentTime, timePlusHour);
         String zeroDuration = Duration.ZERO.toString();
 
-        String newTotal = timeOperationLogic.getNewTotalTime(zeroDuration, duration);
+        String newTotal = timeOperationLogic.addDurationToTime(zeroDuration, duration);
 
         System.out.println(timeOperationLogic.showDurationAsString(newTotal));
 

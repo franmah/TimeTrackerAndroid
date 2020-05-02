@@ -18,7 +18,7 @@
                     android:id="@+id/leftArrow_imageView"
                     android:layout_weight="1"
                     android:backgroundTint="@color/white"
-                    />
+                    android:contentDescription="@string/leftArrowImageDescription" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -27,7 +27,46 @@
                     android:id="@+id/rightArrow_imageView"
                     android:layout_weight="1"
                     android:backgroundTint="@color/white"
+                    android:contentDescription="@string/rightArrowImageDescription"
                     />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fromDateSelection"
+                    android:textSize="18sp"
+                    android:paddingEnd="18dp"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fromDate_statsFragment"
+                    android:text="12/12/12"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/toDateSelection"
+                    android:textSize="18sp"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toDate_statsFragment"
+                    android:text="12/12/12"
+                    android:textSize="18sp"/>
 
         </LinearLayout>
 

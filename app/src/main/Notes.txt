@@ -1,0 +1,23 @@
+SQL tables
+
+
+TimePair
+Starttime | Endtime | date | taskid | total seconds
+
+
+LOADING CHART:
+
+                      VIEW (pie/column chart fragment)
+                                   |
+                                   |
+                               Presenter
+                               /        \
+                             /            \
+                            /              \
+                        DAO logic          Pie/Column Logic
+                            |
+                            |
+                      timePair/TimeDay DAO
+                            |
+                            |
+ DatabaseHelperDAO <---  Operation DAO

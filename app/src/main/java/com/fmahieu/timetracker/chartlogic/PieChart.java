@@ -1,7 +1,5 @@
 package com.fmahieu.timetracker.chartlogic;
 
-import android.os.AsyncTask;
-
 import com.anychart.AnyChart;
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
@@ -10,7 +8,6 @@ import com.anychart.enums.Align;
 import com.anychart.enums.LegendLayout;
 import com.fmahieu.timetracker.logic.DisplayTaskLogic;
 import com.fmahieu.timetracker.logic.TaskLogic;
-import com.fmahieu.timetracker.views.StatsFragment;
 
 import java.util.ArrayList;
 import java.util.List;

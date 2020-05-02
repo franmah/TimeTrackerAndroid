@@ -11,7 +11,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fmahieu.timetracker.R;
-import com.fmahieu.timetracker.logic.AddTaskLogic;
+import com.fmahieu.timetracker.logic.TaskLogic;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -19,7 +19,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class NewTaskActivity extends AppCompatActivity {
     private final String TAG = "__NewTaskActivity";
 
-    private AddTaskLogic addTaskLogic;
+    private TaskLogic taskLogic;
 
     private TextInputLayout taskNameTextInputLayout;
     private TextInputEditText taskNameEditText;
@@ -35,7 +35,7 @@ public class NewTaskActivity extends AppCompatActivity {
         Log.i(TAG, "NewTaskActivity started");
 
         setContentView(R.layout.new_task_activity);
-        addTaskLogic = new AddTaskLogic();
+        taskLogic = new TaskLogic();
 
         setUpWidgets();
     }
@@ -73,7 +73,7 @@ public class NewTaskActivity extends AppCompatActivity {
     }
 
     private void addNewTask(String taskName) {
-        addTaskLogic.addTask(taskName);
+        taskLogic.addTask(taskName);
         setResult();
     }
 
@@ -81,7 +81,7 @@ public class NewTaskActivity extends AppCompatActivity {
         if(newTaskName == null) {
             return false;
         }
-        else if(addTaskLogic.doesTaskExist(newTaskName.trim())){
+        else if(taskLogic.doesTaskExist(newTaskName.trim())){
             this.taskNameTextInputLayout.setError(NAME_ALREADY_EXISTS_ERROR);
             return false;
         }

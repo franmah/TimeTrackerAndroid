@@ -2,7 +2,7 @@ package com.fmahieu.timetracker.models.singletons;
 
 import android.util.Log;
 
-import com.fmahieu.timetracker.logic.TimeOperationLogic;
+import com.fmahieu.timetracker.TimeDateLogic.TimeOperationLogic;
 import com.fmahieu.timetracker.models.Task;
 
 import java.util.ArrayList;

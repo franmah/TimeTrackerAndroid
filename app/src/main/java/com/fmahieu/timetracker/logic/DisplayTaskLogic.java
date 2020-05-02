@@ -1,5 +1,10 @@
 package com.fmahieu.timetracker.logic;
 
+import com.fmahieu.timetracker.TimeDateLogic.TimeOperationLogic;
+
+/**
+ * Turn tasks' attributes into human readable format
+ */
 public class DisplayTaskLogic {
 
     private TimeOperationLogic timeOperationLogic;
@@ -9,7 +14,7 @@ public class DisplayTaskLogic {
     }
 
     public long getTotalTimeAsSeconds(String durationStr){
-        return timeOperationLogic.getSecondsInDuration(durationStr);
+        return timeOperationLogic.getSecondsFromWithinDuration(durationStr);
     }
 
 }

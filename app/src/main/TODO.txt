@@ -1,0 +1,20 @@
+
+Graph Activity
+-> replace buttons by "<<< SWIPE >>>" with animation for the arrows
+-> improve chart loading (speed and showing the load animation)
+
+Persistence:
+-> no stopping activities when app is left (or view) is left.
+-> updating time for running activities when going back into the app
+-> to hold onto data: use lifecycle, is doesn't work then uses shared preferences.
+
+Notifications:
+-> permanent notification to easily access app
+-> be able to stop an activity.
+-> notification from locked screen, ability to get right to the app
+
+Performance:
+
+=> 30 day caching?
+pre-load data for the last 30 days into a Map<String (date), List<PairTime>
+if selection is further back in time than 30 days then access DB.

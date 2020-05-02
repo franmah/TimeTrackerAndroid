@@ -31,6 +31,44 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fromDateSelection"
+            android:textSize="18sp"
+            android:paddingEnd="8dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fromDate_statsFragment"
+            android:text="12/12/2020"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/toDateSelection"
+            android:textSize="18sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toDate_statsFragment"
+            android:text="12/12/2020"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager_statsSwipeFrag"
         android:layout_width="match_parent"

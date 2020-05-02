@@ -6,6 +6,11 @@ import com.fmahieu.timetracker.models.singletons.Tasks;
 
 import java.util.List;
 
+import com.fmahieu.timetracker.TimeDateLogic.TimeOperationLogic;
+
+/**
+ * Handles logic to manipulate tasks
+ */
 public class TaskLogic {
     final private String TAG = "__TaskLogic";
 
@@ -15,6 +20,14 @@ public class TaskLogic {
     public TaskLogic(){
         this.timeOperationLogic = new TimeOperationLogic();
         this.tasks = Tasks.getInstance();
+    }
+
+    public void addTask(String newTaskName) {
+        this.tasks.addTask(newTaskName);
+    }
+
+    public boolean doesTaskExist(String taskName){
+        return tasks.doesTaskExist(taskName);
     }
 
     public void startTimerForTask(String taskName){
@@ -38,7 +51,7 @@ public class TaskLogic {
         String totalTime = tasks.getTotalTime(taskName);
 
         Log.i(TAG, duration + " " + totalTime);
-        String newTotalTime = timeOperationLogic.getNewTotalTime(totalTime, duration);
+        String newTotalTime = timeOperationLogic.addDurationToTime(totalTime, duration);
 
         Log.i(TAG, "new total time of : " + newTotalTime + " for task: " + taskName);
         tasks.setTotalTime(taskName, newTotalTime);

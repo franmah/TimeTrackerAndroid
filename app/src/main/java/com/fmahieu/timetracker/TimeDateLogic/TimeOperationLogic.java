@@ -1,11 +1,11 @@
-package com.fmahieu.timetracker.logic;
+package com.fmahieu.timetracker.TimeDateLogic;
 
 import java.time.Duration;
 import java.time.LocalTime;
 
 /**
  * Module handling time. This class uses java's LocalTime and Duration classes
- * Handle null string errors
+ * Handles null string errors
  */
 public class TimeOperationLogic {
 
@@ -16,7 +16,7 @@ public class TimeOperationLogic {
     }
 
     /**
-     * Get the duration betweem two LocalTime
+     * Get the duration between two LocalTime
      * @param beginTimeStr first time as a string
      * @param endTimeStr second time as a string
      * @return
@@ -30,13 +30,24 @@ public class TimeOperationLogic {
         return Duration.between(beginTime, endTime).toString();
     }
 
-    public String getNewTotalTime(String originalTimeStr, String durationStr){
+    /**
+     * Add a duration to a LocalTime
+     * @param originalTimeStr
+     * @param durationStr
+     * @return
+     */
+    public String addDurationToTime(String originalTimeStr, String durationStr){
         Duration originalTime = originalTimeStr == null ? Duration.ZERO : Duration.parse(originalTimeStr);
         Duration duration = durationStr == null ? Duration.ZERO : Duration.parse(durationStr);
 
         return originalTime.plus(duration).toString();
     }
 
+    /**
+     * Format duration into human readable string
+     * @param durationStr
+     * @return
+     */
     public String showDurationAsString(String durationStr){
         if(durationStr == null)
             return null;
@@ -52,7 +63,7 @@ public class TimeOperationLogic {
         return hours + ":" + minutes + ":" + seconds;
     }
 
-    public long getSecondsInDuration(String durationStr){
+    public long getSecondsFromWithinDuration(String durationStr){
         if(durationStr == null){
             return 0;
         }

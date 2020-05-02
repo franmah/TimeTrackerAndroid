@@ -44,7 +44,7 @@ public class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private Handler handler = new Handler();
 
     public TaskHolder(LayoutInflater inflater, ViewGroup parent, Context context){
-        super(inflater.inflate(R.layout.task_holder_test1, parent, false));
+        super(inflater.inflate(R.layout.task_holder, parent, false));
         //super(inflater.inflate(R.layout.test_task_holder, parent, false));
 
         this.taskLogic = new TaskLogic();

@@ -9,6 +9,7 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
+
 import com.fmahieu.timetracker.logic.DisplayTaskLogic;
 import com.fmahieu.timetracker.logic.TaskLogic;
 
@@ -33,7 +34,6 @@ public class ColumnChart {
             dataEntries.add(new ValueDataEntry(taskNames.get(i), totalTimeInSeconds));
         }
 
-
         Cartesian cartesian = AnyChart.column();
         Column column = cartesian.column(dataEntries);
 
@@ -43,12 +43,10 @@ public class ColumnChart {
                 .anchor(Anchor.CENTER_BOTTOM)
                 .offsetX(0d)
                 .offsetY(5d)
-                .format("${%Value}{groupsSeparator: }");
+                .format("s{%Value}{groupsSeparator: }");
 
         cartesian.animation(true);
-
         cartesian.yScale().minimum(0d);
-
         cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
