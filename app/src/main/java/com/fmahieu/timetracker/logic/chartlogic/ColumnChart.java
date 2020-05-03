@@ -1,4 +1,4 @@
-package com.fmahieu.timetracker.chartlogic;
+package com.fmahieu.timetracker.logic.chartlogic;
 
 import com.anychart.AnyChart;
 import com.anychart.chart.common.dataentry.DataEntry;
@@ -10,8 +10,8 @@ import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 
-import com.fmahieu.timetracker.logic.DisplayTaskLogic;
 import com.fmahieu.timetracker.logic.TaskLogic;
+import com.fmahieu.timetracker.logic.TimeDateLogic.TimeOperationLogic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
 public class ColumnChart {
 
     private TaskLogic taskLogic = new TaskLogic();
-    private DisplayTaskLogic displayTaskLogic = new DisplayTaskLogic();
+    private TimeOperationLogic timeOperationLogic = new TimeOperationLogic();
 
     public Cartesian getColumnChart(){
         List<DataEntry> dataEntries = new ArrayList<>();
@@ -30,7 +30,7 @@ public class ColumnChart {
 
         for(int i = 0; i < taskNames.size(); i++){
             totalTime = taskLogic.getTaskTotalTime(taskNames.get(i));
-            totalTimeInSeconds = displayTaskLogic.getTotalTimeAsSeconds(totalTime);
+            totalTimeInSeconds = timeOperationLogic.getDurationAsSeconds(totalTime);
             dataEntries.add(new ValueDataEntry(taskNames.get(i), totalTimeInSeconds));
         }
 

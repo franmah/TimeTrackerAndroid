@@ -3,6 +3,10 @@ Graph Activity
 -> replace buttons by "<<< SWIPE >>>" with animation for the arrows
 -> improve chart loading (speed and showing the load animation)
 
+CHARTS fragment
+-> change the chart logic (pie/column) to have an interface with a function to get a graph.
+(avoid having to modify each fragment every time), create a single async function if possible
+
 Persistence:
 -> no stopping activities when app is left (or view) is left.
 -> updating time for running activities when going back into the app

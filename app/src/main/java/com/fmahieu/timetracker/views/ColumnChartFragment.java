@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.anychart.AnyChartView;
 import com.anychart.charts.Cartesian;
 import com.fmahieu.timetracker.R;
-import com.fmahieu.timetracker.chartlogic.ColumnChart;
+import com.fmahieu.timetracker.logic.chartlogic.ColumnChart;
 
 public class ColumnChartFragment extends Fragment {
 

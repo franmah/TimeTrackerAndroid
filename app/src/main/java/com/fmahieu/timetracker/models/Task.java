@@ -1,15 +1,18 @@
 package com.fmahieu.timetracker.models;
 
-import java.time.Duration;
-
 public class Task {
 
     private String name;
-    private String totalTime;
-    private String initialTime; // when timer is started
+    private String dateCreated;
+    private String totalDuration;
+    private String initialTime; // when stopwatch is started
 
-    public Task(String name) {
+    public Task(){}
+
+    public Task(String name, String dateCreated, String totalDuration) {
         this.name = name;
+        this.dateCreated = dateCreated;
+        this.totalDuration = totalDuration;
     }
 
     public String getName() {
@@ -20,12 +23,12 @@ public class Task {
         this.name = name;
     }
 
-    public String getTotalTime() {
-        return totalTime;
+    public String getTotalDuration() {
+        return totalDuration;
     }
 
-    public void setTotalTime(String totalTime) {
-        this.totalTime = totalTime;
+    public void setTotalDuration(String totalDuration) {
+        this.totalDuration = totalDuration;
     }
 
     public String getInitialTime() {
@@ -42,5 +45,13 @@ public class Task {
 
     public void resetInitialTime() {
         this.initialTime = null;
+    }
+
+    public String getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }

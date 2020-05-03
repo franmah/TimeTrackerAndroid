@@ -45,7 +45,6 @@ public class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public TaskHolder(LayoutInflater inflater, ViewGroup parent, Context context){
         super(inflater.inflate(R.layout.task_holder, parent, false));
-        //super(inflater.inflate(R.layout.test_task_holder, parent, false));
 
         this.taskLogic = new TaskLogic();
         this.context = context;
@@ -57,13 +56,11 @@ public class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickL
         this.stopwatchControlImageView.setImageResource(PLAY_ICON_RES);
     }
 
-    public void bind(final String taskName, int notificationId, NotificationCompat.Builder notificationBuilder){
+    public void bind(final String taskName){
 
         this.taskNameView.setText(taskName);
         this.isTimerRunning = false;
         this.taskName = taskName;
-        this.notificationBuilder = notificationBuilder;
-        this.notificationId = notificationId;
 
         this.stopwatchControlImageView.setOnClickListener(this);
     }
@@ -93,14 +90,14 @@ public class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private Runnable startTimerForTask = new Runnable() {
         @Override
         public void run() {
-            taskLogic.startTimerForTask(taskName);
+            taskLogic.startStopwatchForTask(taskName);
         }
     };
 
     private Runnable stopTimerForTask = new Runnable() {
         @Override
         public void run() {
-            taskLogic.stopTimerForTask(taskName);
+            taskLogic.stopStopwatchForTask(taskName);
         }
     };
 
@@ -126,7 +123,6 @@ public class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickL
             stopTimerForTask.run();
         }
         else {  // pressed play button
-            startNotification();
 
             startTime = SystemClock.uptimeMillis();
             isTimerRunning = true;
@@ -136,12 +132,4 @@ public class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickL
         }
     }
 
-    private void startNotification(){
-        this.notificationBuilder.setContentText(this.taskNameView.getText() + " running");
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(this.notificationId, this.notificationBuilder.build());
-    }
 }

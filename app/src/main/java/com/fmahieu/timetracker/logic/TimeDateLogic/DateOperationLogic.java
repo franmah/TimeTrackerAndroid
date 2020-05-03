@@ -1,4 +1,4 @@
-package com.fmahieu.timetracker.TimeDateLogic;
+package com.fmahieu.timetracker.logic.TimeDateLogic;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

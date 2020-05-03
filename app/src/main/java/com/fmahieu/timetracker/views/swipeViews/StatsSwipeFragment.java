@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.fmahieu.timetracker.R;
-import com.fmahieu.timetracker.TimeDateLogic.DateOperationLogic;
+import com.fmahieu.timetracker.logic.TimeDateLogic.DateOperationLogic;
 
 public class StatsSwipeFragment extends Fragment {
 
@@ -160,14 +160,17 @@ public class StatsSwipeFragment extends Fragment {
             }
         });
 
+    }
 
+    /**
+     * Notify the current chart fragment to reload the graph with updated data.
+     */
+    private void reloadFragmentChart(){
     }
 
     private void setViewPager(View view){
         this.currentChartView = 0;
-
         this.viewPager = view.findViewById(R.id.viewPager_statsSwipeFrag);
-
 
         this.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -178,13 +181,12 @@ public class StatsSwipeFragment extends Fragment {
                     rightArrowView.setClickable(false);
                     leftArrowView.setImageResource(R.mipmap.ic_left_arrow);
                     leftArrowView.setClickable(true);
-
                 }
-                if(position == 0){
+
+                else if(position == 0){
                     currentChartView = 0;
                     leftArrowView.setImageResource(R.mipmap.ic_left_arrow_gray);
                     leftArrowView.setClickable(false);
-
                     rightArrowView.setImageResource(R.mipmap.ic_right_arrow);
                     rightArrowView.setClickable(true);
                 }

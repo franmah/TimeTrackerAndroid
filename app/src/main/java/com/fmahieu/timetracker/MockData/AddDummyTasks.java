@@ -1,6 +1,6 @@
 package com.fmahieu.timetracker.MockData;
 
-import com.fmahieu.timetracker.TimeDateLogic.TimeOperationLogic;
+import com.fmahieu.timetracker.logic.TimeDateLogic.TimeOperationLogic;
 import com.fmahieu.timetracker.models.singletons.Tasks;
 
 import java.time.LocalTime;
@@ -17,7 +17,7 @@ public class AddDummyTasks {
 
     public void AddTasks(int numTasks){
         for(int i = 0; i < numTasks; i++){
-            this.tasks.addTask("dummy activity #" + i);
+            //this.tasks.addTask("dummy activity #" + i, );
         }
     }
 
@@ -28,20 +28,20 @@ public class AddDummyTasks {
 
         t1 = LocalTime.parse("06:30");
         t2 = LocalTime.parse("07:30");
-        duration = timeOperationLogic.getDurationTime(t1.toString(), t2.toString());
-        this.tasks.addTask("OneHourActivity");
+        duration = timeOperationLogic.getDurationBetweenTwoTimes(t1.toString(), t2.toString());
+        //this.tasks.addTask("OneHourActivity");
         this.tasks.setTotalTime("OneHourActivity", duration);
 
         t1 = LocalTime.parse("06:30");
         t2 = LocalTime.parse("08:30");
-        duration = timeOperationLogic.getDurationTime(t1.toString(), t2.toString());
-        this.tasks.addTask("TwoHourActivity");
+        duration = timeOperationLogic.getDurationBetweenTwoTimes(t1.toString(), t2.toString());
+       // this.tasks.addTask("TwoHourActivity");
         this.tasks.setTotalTime("TwoHourActivity", duration);
 
         t1 = LocalTime.parse("06:30");
         t2 = LocalTime.parse("09:30");
-        duration = timeOperationLogic.getDurationTime(t1.toString(), t2.toString());
-        this.tasks.addTask("ThreeHour");
+        duration = timeOperationLogic.getDurationBetweenTwoTimes(t1.toString(), t2.toString());
+        //this.tasks.addTask("ThreeHour");
         this.tasks.setTotalTime("ThreeHourActivity", duration);
 
     }

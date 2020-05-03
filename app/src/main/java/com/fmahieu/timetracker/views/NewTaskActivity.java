@@ -41,7 +41,6 @@ public class NewTaskActivity extends AppCompatActivity {
     }
 
     private void setUpWidgets(){
-
         this.taskNameTextInputLayout = findViewById(R.id.task_name_TextInputLayout);
         this.taskNameEditText = findViewById(R.id.task_name_TextInputEdit);
         this.submitNewTaskButton = findViewById(R.id.submitNewTask_floating_button);
@@ -60,12 +59,15 @@ public class NewTaskActivity extends AppCompatActivity {
         this.submitNewTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isTaskNameValid(taskNameEditText.getText().toString().trim())){
-                    if(taskNameEditText.getText().toString().trim().length() == 0){
+
+                String text = taskNameEditText.getText().toString().trim();
+
+                if(isTaskNameValid(text)){
+                    if(text.length() == 0){
                         taskNameTextInputLayout.setError(EMPTY_NAME);
                     }
                     else{
-                        addNewTask(taskNameEditText.getText().toString().trim());
+                        addNewTask(text);
                     }
                 }
             }

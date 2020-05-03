@@ -1,4 +1,4 @@
-package com.fmahieu.timetracker.dao;
+package com.fmahieu.timetracker.database.sqlite;
 
 /**
  * Handles operation on the days table

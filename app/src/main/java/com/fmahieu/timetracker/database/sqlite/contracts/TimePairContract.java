@@ -1,6 +1,4 @@
-package com.fmahieu.timetracker.dao;
-
-import com.fmahieu.timetracker.models.TimePair;
+package com.fmahieu.timetracker.database.sqlite.contracts;
 
 /**
  * Holds constants needed to manipulate the time_pair table

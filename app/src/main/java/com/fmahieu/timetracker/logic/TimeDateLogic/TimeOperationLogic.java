@@ -1,4 +1,4 @@
-package com.fmahieu.timetracker.TimeDateLogic;
+package com.fmahieu.timetracker.logic.TimeDateLogic;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -15,13 +15,18 @@ public class TimeOperationLogic {
         return LocalTime.now().toString();
     }
 
+    public String getDefaultDuration(){
+        Duration duration = Duration.ZERO;
+        return duration.toString();
+    }
+
     /**
      * Get the duration between two LocalTime
      * @param beginTimeStr first time as a string
      * @param endTimeStr second time as a string
      * @return
      */
-    public String getDurationTime(String beginTimeStr, String endTimeStr){
+    public String getDurationBetweenTwoTimes(String beginTimeStr, String endTimeStr){
         if(beginTimeStr == null || endTimeStr == null)
             return Duration.ZERO.toString();
 
@@ -32,15 +37,14 @@ public class TimeOperationLogic {
 
     /**
      * Add a duration to a LocalTime
-     * @param originalTimeStr
+     * @param originalDurationStr
      * @param durationStr
      * @return
      */
-    public String addDurationToTime(String originalTimeStr, String durationStr){
-        Duration originalTime = originalTimeStr == null ? Duration.ZERO : Duration.parse(originalTimeStr);
+    public String sumDurations(String originalDurationStr, String durationStr){
+        Duration originalDuration = originalDurationStr == null ? Duration.ZERO : Duration.parse(originalDurationStr);
         Duration duration = durationStr == null ? Duration.ZERO : Duration.parse(durationStr);
-
-        return originalTime.plus(duration).toString();
+        return originalDuration.plus(duration).toString();
     }
 
     /**
@@ -63,7 +67,7 @@ public class TimeOperationLogic {
         return hours + ":" + minutes + ":" + seconds;
     }
 
-    public long getSecondsFromWithinDuration(String durationStr){
+    public long getDurationAsSeconds(String durationStr){
         if(durationStr == null){
             return 0;
         }

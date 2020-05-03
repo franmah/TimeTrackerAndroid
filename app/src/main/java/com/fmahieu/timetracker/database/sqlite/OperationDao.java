@@ -1,16 +1,27 @@
-package com.fmahieu.timetracker.dao;
+package com.fmahieu.timetracker.database.sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.fmahieu.timetracker.application.App;
+
 public class OperationDao {
 
     DatabaseHelper dbHelper;
 
-    public OperationDao(Context context){
-        dbHelper = new DatabaseHelper(context);
+    private static OperationDao instance;
+
+    public static OperationDao getInstance(){
+        if(instance == null){
+            instance = new OperationDao();
+        }
+        return instance;
+    }
+
+    private OperationDao(){
+        dbHelper = new DatabaseHelper();
     }
 
     public void insert(String tableName, ContentValues values){

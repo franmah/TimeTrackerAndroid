@@ -1,17 +1,14 @@
 package com.fmahieu.timetracker.views;
 
 import android.app.DatePickerDialog;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.fmahieu.timetracker.R;
-import com.fmahieu.timetracker.TimeDateLogic.DateOperationLogic;
+import com.fmahieu.timetracker.logic.TimeDateLogic.DateOperationLogic;
 
 public class StatsFragmentOLD extends Fragment {
 
