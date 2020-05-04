@@ -2,10 +2,17 @@ package com.fmahieu.timetracker.models;
 
 public class Task {
 
+    // TODO: duration and date created should be stored in readable/parsable format (to avoid depending on LocalTime and Duration).
+    // TODO: startTime should have the date and the time.
     private String name;
     private String dateCreated;
+
+    /**
+     * stored in a readable way (h...h:mm:ss).
+     * How long the stopwatch has ran in total.
+     */
     private String totalDuration;
-    private String initialTime; // when stopwatch is started
+    private String startTime; // when the stopwatch started (actual hours/minutes/seconds)
 
     public Task(){}
 
@@ -13,6 +20,7 @@ public class Task {
         this.name = name;
         this.dateCreated = dateCreated;
         this.totalDuration = totalDuration;
+        startTime = null;
     }
 
     public String getName() {
@@ -31,24 +39,28 @@ public class Task {
         this.totalDuration = totalDuration;
     }
 
-    public String getInitialTime() {
-        return initialTime;
+    public String getStartTime() {
+        return startTime;
     }
 
     /**
      * If an initial time has already been set but not stopped, it is simply removed for now
-     * @param initialTime
+     * @param startTime
      */
-    public void setInitialTime(String initialTime) {
-        this.initialTime = initialTime;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
     public void resetInitialTime() {
-        this.initialTime = null;
+        this.startTime = null;
     }
 
     public String getDateCreated() {
         return dateCreated;
+    }
+
+    public boolean isRunning(){
+        return startTime != null;
     }
 
     public void setDateCreated(String dateCreated) {

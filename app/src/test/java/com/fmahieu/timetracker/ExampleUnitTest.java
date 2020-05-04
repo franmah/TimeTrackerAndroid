@@ -65,7 +65,7 @@ public class ExampleUnitTest {
 
         String newTotal = timeOperationLogic.sumDurations(zeroDuration, duration);
 
-        System.out.println(timeOperationLogic.showDurationAsString(newTotal));
+        System.out.println(timeOperationLogic.convertDurationToReadableString(newTotal));
 
 
     }

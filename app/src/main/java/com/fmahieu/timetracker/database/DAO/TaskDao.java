@@ -27,6 +27,7 @@ public class TaskDao {
     }
 
     public List<Task> getAllTasks(){
+        Log.i(TAG, "getting all tasks from database");
         try{
             return tasksDao.getAllTasks();
         }

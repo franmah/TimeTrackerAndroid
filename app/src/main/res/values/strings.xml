@@ -16,6 +16,9 @@
     <string name="settings_menu_string">Settings</string>
     <string name="info_menu_string">Info</string>
 
+    <!-- TaskHolder -->
+    <string name="default_stopwatch_text">00:00:00</string>
+
     <!-- Add New Task -->
     <string name="taskName">Name</string>
     <string name="nameTooLongError">Name should be less than 20 characters</string>

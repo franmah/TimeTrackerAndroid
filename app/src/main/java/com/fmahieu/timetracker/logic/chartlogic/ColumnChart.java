@@ -29,7 +29,7 @@ public class ColumnChart {
         long totalTimeInSeconds;
 
         for(int i = 0; i < taskNames.size(); i++){
-            totalTime = taskLogic.getTaskTotalTime(taskNames.get(i));
+            totalTime = taskLogic.getTaskTotalDurationAsReadableString(taskNames.get(i));
             totalTimeInSeconds = timeOperationLogic.getDurationAsSeconds(totalTime);
             dataEntries.add(new ValueDataEntry(taskNames.get(i), totalTimeInSeconds));
         }

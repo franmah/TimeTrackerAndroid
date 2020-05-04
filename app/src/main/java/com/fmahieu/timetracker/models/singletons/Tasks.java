@@ -34,20 +34,20 @@ public class Tasks {
         Log.i(TAG, "added a task, num of task: " + this.getNumberOfTasks());
     }
 
-    public String getInitialTime(String taskName){
+    public String getStartTime(String taskName){
         if(tasksMap.containsKey(taskName)) {
-            return tasksMap.get(taskName).getInitialTime();
+            return tasksMap.get(taskName).getStartTime();
         }
         return null;
     }
 
-    public void setInitialTime(String taskName, String time){
+    public void setStartTime(String taskName, String time){
         if(tasksMap.containsKey(taskName)){
-            tasksMap.get(taskName).setInitialTime(time);
+            tasksMap.get(taskName).setStartTime(time);
         }
     }
 
-    public void resetInitialTime(String taskName){
+    public void resetStartTime(String taskName){
         if(tasksMap.containsKey(taskName)){
             tasksMap.get(taskName).resetInitialTime();
         }
@@ -79,7 +79,9 @@ public class Tasks {
         TimeOperationLogic logic = new TimeOperationLogic();
         StringBuilder strBuilder = new StringBuilder();
         for (Map.Entry<String,Task> entry : this.tasksMap.entrySet()){
-            strBuilder.append(entry.getKey() + ": " + logic.showDurationAsString( entry.getValue().getTotalDuration()) + "\n");
+            strBuilder.append(entry.getKey()).append(": ")
+                    .append(logic.convertDurationToReadableString(entry.getValue().getTotalDuration()))
+                    .append("\n");
         }
         return strBuilder.toString();
     }
@@ -99,5 +101,9 @@ public class Tasks {
 
     public boolean hasLoaded() {
         return this.hasLoaded;
+    }
+
+    public boolean isTaskRunning(String taskName){
+        return tasksMap.get(taskName).isRunning();
     }
 }

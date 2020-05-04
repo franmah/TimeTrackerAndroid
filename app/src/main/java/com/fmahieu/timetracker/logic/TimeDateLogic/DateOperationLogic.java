@@ -34,7 +34,7 @@ public class DateOperationLogic {
         return date.format(dateFormat);
     }
 
-    public String getCurrentDateAsString(){
+    public String getCurrentDate(){
         return LocalDate.now().format(dateFormat);
     }
 

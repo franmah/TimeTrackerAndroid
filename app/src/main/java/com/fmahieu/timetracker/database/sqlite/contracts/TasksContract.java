@@ -15,5 +15,5 @@ public class TasksContract {
                     COLUMN_NAME_TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     COLUMN_NAME_TASK_NAME + " TEXT," +
                     COLUMN_NAME_DATE_CREATED + " TEXT," +
-                    COLUMN_NAME_TOTAL_TIME + " INTEGER)";
+                    COLUMN_NAME_TOTAL_TIME + " TEXT)";
 }

@@ -106,7 +106,7 @@ public class StatsSwipeFragment extends Fragment {
         String fromDateText = dateOperationLogic.getDateOneMonthAgo();
         fromDateView.setText(fromDateText);
 
-        String currentDate = dateOperationLogic.getCurrentDateAsString();
+        String currentDate = dateOperationLogic.getCurrentDate();
         toDateView.setText(currentDate);
 
         // Set up listeners

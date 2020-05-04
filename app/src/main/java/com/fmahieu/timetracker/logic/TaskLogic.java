@@ -1,10 +1,7 @@
 package com.fmahieu.timetracker.logic;
 
-import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 
-import com.fmahieu.timetracker.application.App;
 import com.fmahieu.timetracker.database.DAO.TaskDao;
 import com.fmahieu.timetracker.logic.TimeDateLogic.DateOperationLogic;
 import com.fmahieu.timetracker.models.Task;
@@ -34,7 +31,7 @@ public class TaskLogic {
 
     public void addTask(String newTaskName) {
         Log.i(TAG, "adding task: " + newTaskName);
-        String dateCreated = dateOperationLogic.getCurrentDateAsString();
+        String dateCreated = dateOperationLogic.getCurrentDate();
         String initialTotalDuration = timeOperationLogic.getDefaultDuration();
 
         Task task = new Task(newTaskName, dateCreated, initialTotalDuration);
@@ -51,27 +48,28 @@ public class TaskLogic {
         Log.i(TAG, "starting stopwatch for: " + taskName);
 
         String currentTime = timeOperationLogic.getCurrentTime();
-        tasks.setInitialTime(taskName, currentTime);
+        Log.i(TAG, "__TESTING: task started at : " + currentTime);
+        tasks.setStartTime(taskName, currentTime);
     }
 
     public void stopStopwatchForTask(String taskName){
         Log.i(TAG, "stopping stopwatch for: " + taskName);
 
         String endTime = timeOperationLogic.getCurrentTime();
-        String initialTime = tasks.getInitialTime(taskName);
-
-        tasks.resetInitialTime(taskName);
+        String initialTime = tasks.getStartTime(taskName);
+        tasks.resetStartTime(taskName);
 
         // find how long the timer has been running
         String duration = timeOperationLogic.getDurationBetweenTwoTimes(initialTime, endTime);
 
         String totalTime = tasks.getTotalTime(taskName);
+        totalTime = timeOperationLogic.convertStringToDuration(totalTime);
 
-        Log.i(TAG, duration + " " + totalTime);
-        String newTotalTime = timeOperationLogic.sumDurations(totalTime, duration);
+        String newTotalDuration = timeOperationLogic.sumDurations(totalTime, duration);
+        newTotalDuration = timeOperationLogic.convertDurationToReadableString(newTotalDuration);
 
-        Log.i(TAG, "new total time of : " + newTotalTime + " for task: " + taskName);
-        tasks.setTotalTime(taskName, newTotalTime);
+        Log.i(TAG, "__TESTING: new total time of : " + newTotalDuration + " for task: " + taskName);
+        tasks.setTotalTime(taskName, newTotalDuration);
     }
 
     public List<String> getTasksNames() {
@@ -82,7 +80,9 @@ public class TaskLogic {
         return this.tasks.getNumberOfTasks();
     }
 
-    public String getTaskTotalTime(String taskName){
+    public String getTaskTotalDurationAsReadableString(String taskName){
         return tasks.getTotalTime(taskName);
     }
+
+
 }
