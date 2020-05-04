@@ -44,7 +44,6 @@ public class StopwatchFragment extends Fragment {
         this.recycler = view.findViewById(R.id.task_recycler_view);
         this.context = getContext();
 
-
         this.adapter = new TaskRecyclerAdapter(context);
         this.recycler.setLayoutManager(new LinearLayoutManager((context)));
         this.recycler.setAdapter(this.adapter);
@@ -60,7 +59,23 @@ public class StopwatchFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(TAG, "__TESTING: stop");
+        RecyclerView.LayoutManager layoutManager = recycler.getLayoutManager();
+        int numItems = layoutManager.getItemCount();
+        for(int i = 0; i < numItems; i++){
+            TaskHolder taskHolder = (TaskHolder) recycler.findViewHolderForAdapterPosition(i);
+            taskHolder.pauseStopwatch();
 
+        }
+    }
 
+    @Override
+    public void onPause() {
 
+        super.onPause();
+        Log.i(TAG, "__TESTING: pause");
+    }
 }

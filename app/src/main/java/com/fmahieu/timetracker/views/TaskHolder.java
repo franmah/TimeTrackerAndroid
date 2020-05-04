@@ -143,4 +143,8 @@ public class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickL
             taskLogic.stopStopwatchForTask(taskName);
         }
     };
+
+    public void pauseStopwatch() {
+        isStopwatchRunning = false;
+    }
 }

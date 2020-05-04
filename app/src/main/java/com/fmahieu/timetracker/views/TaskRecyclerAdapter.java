@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fmahieu.timetracker.application.App;
 import com.fmahieu.timetracker.logic.TaskLogic;
 
 import java.util.ArrayList;
@@ -21,8 +20,6 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter<TaskHolder> {
     private List<String> tasks;
     private TaskLogic taskLogic;
     private Context context;
-
-    private int notificationIdCounter = 0;
 
     public TaskRecyclerAdapter(Context context){
         Log.i(TAG, "creating adapter");
@@ -56,6 +53,10 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter<TaskHolder> {
             this.tasks = taskLogic.getTasksNames();
         }
         return newNumTasks;
+    }
+
+    public void stopStopwatchForHolders(){
+
     }
 
 }
