@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:gravity="end"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/task_name_textView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="@string/test_string"
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:layout_weight="1"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/timer_stopwatch_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="00:00:00"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/timer_totalTime_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="00:00:00"
+                android:textSize="12sp"
+                />
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/play_pause_timer_image_view"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="24dp"
+        android:src="@mipmap/ic_play_timer_black_bgk"
+        android:contentDescription="@string/playButtonIconDescription" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+</LinearLayout>
+
+

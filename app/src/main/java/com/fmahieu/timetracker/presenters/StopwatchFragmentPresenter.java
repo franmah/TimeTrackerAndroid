@@ -3,7 +3,6 @@ package com.fmahieu.timetracker.presenters;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 
-import androidx.fragment.app.Fragment;
 
 import com.fmahieu.timetracker.logic.InitialSetupLogic;
 import com.fmahieu.timetracker.views.StopwatchFragment;
@@ -22,7 +21,7 @@ public class StopwatchFragmentPresenter {
 
             @Override
             protected Void doInBackground(Void... voids) {
-                new InitialSetupLogic().loadTasks();
+                new InitialSetupLogic().loadData();
                 return null;
             }
 

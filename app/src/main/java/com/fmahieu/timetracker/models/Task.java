@@ -2,16 +2,15 @@ package com.fmahieu.timetracker.models;
 
 public class Task {
 
-    // TODO: duration and date created should be stored in readable/parsable format (to avoid depending on LocalTime and Duration).
-    // TODO: startTime should have the date and the time.
+
     private String name;
-    private String dateCreated;
 
     /**
-     * stored in a readable way (h...h:mm:ss).
-     * How long the stopwatch has ran in total.
+     * stored only with days/years/months (without special order)
      */
+    private String dateCreated;
     private String totalDuration;
+    // TODO: startTime should have the date and the time.
     private String startTime; // when the stopwatch started (actual hours/minutes/seconds)
 
     public Task(){}

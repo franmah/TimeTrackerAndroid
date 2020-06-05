@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:label="@string/newTask_title" android:name=".views.NewTaskActivity"/>
+        <activity android:name=".views.TestActivity" android:label="@string/test_string"/>
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.fmahieu.timetracker.views;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.anychart.AnyChartView;
 import com.anychart.charts.Pie;
 import com.fmahieu.timetracker.R;
+import com.fmahieu.timetracker.logger.Logger;
 import com.fmahieu.timetracker.logic.chartlogic.PieChart;
 
 public class PieChartFragment extends Fragment {
@@ -23,6 +25,8 @@ public class PieChartFragment extends Fragment {
 
     private AnyChartView anyChartView;
     private LinearLayout progressLinearView; // show loading circle while chart is loading
+
+    private Logger logger = new Logger();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,11 +45,11 @@ public class PieChartFragment extends Fragment {
     }
 
     public void loadGraph(View view){
+        logger.logMessage(TAG, "loading graph");
         this.anyChartView.setVisibility(View.GONE);
         this.progressLinearView.setVisibility(View.VISIBLE);
         new LoadPieChartView().execute();
     }
-
 
     /**
      * Modify views to show the loaded chart

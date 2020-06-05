@@ -1,40 +1,21 @@
 package com.fmahieu.timetracker.database.DAO;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.fmahieu.timetracker.database.sqlite.TasksDao;
 import com.fmahieu.timetracker.models.Task;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Call the right functions from the database dao/handlers/repository
  * Handles basic functions, shouldn't have to change if sql technology/library is changed
  */
-public class TaskDao {
+public interface TaskDao {
 
-    private final String TAG = "__TaskDao";
-    private TasksDao tasksDao;
+    void addTask(Task task);
 
-    public TaskDao(){
-        tasksDao = new TasksDao();
-    }
+    void updateTask(Task task);
 
-    public void addTask(Task task){
-        tasksDao.addTask(task);
-    }
+    List<Task> getAllTasks();
 
-    public List<Task> getAllTasks(){
-        Log.i(TAG, "getting all tasks from database");
-        try{
-            return tasksDao.getAllTasks();
-        }
-        catch (Exception e){
-            Log.i(TAG, "Error when getting all tasks from database: " + e.toString());
-        }
+    Task getTask(String taskName);
 
-        return new ArrayList<>();
-    }
+    void deleteTask(String taskName);
 }

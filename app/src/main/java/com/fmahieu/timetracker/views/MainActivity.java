@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.fmahieu.timetracker.MockData.DummyTimeDay;
 import com.fmahieu.timetracker.R;
 import com.fmahieu.timetracker.logic.InitialSetupLogic;
 import com.fmahieu.timetracker.logic.TaskLogic;
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         context = this;
 
         setTitle(R.string.stopwatch_title);
+
+        //TODO: delete testing
+        new DummyTimeDay().addDummyData();
 
         setViews();
         setFragment(MenuViews.Stopwatch);
@@ -99,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 setFragment(MenuViews.Stats);
                 return true;
             case R.id.settings_menu_item:
-                //makeToast("clicked settings");
+                Intent intent = new Intent(this, TestActivity.class);
+                startActivity(intent);
                 return true;
         }
         return false;

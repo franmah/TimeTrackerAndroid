@@ -42,4 +42,7 @@
     <string name="leftArrowImageDescription">left arrow</string>
     <string name="rightArrowImageDescription">right arrow</string>
 
+    <!-- Test Activity -->
+    <string name="testTimeDayDatabase">TimeDayDatabase</string>
+
 </resources>

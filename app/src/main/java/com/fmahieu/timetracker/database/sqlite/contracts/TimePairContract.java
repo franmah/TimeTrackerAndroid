@@ -1,7 +1,8 @@
 package com.fmahieu.timetracker.database.sqlite.contracts;
 
 /**
- * Holds constants needed to manipulate the time_pair table
+ * Holds constants needed to manipulate the time_pair table.
+ * The time pair table holds entries for each time the stopwatch was started and stopped
  */
 public class TimePairContract {
     private TimePairContract(){}

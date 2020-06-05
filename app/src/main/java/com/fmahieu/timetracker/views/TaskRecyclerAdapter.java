@@ -36,7 +36,7 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter<TaskHolder> {
     @Override
     public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-        return new TaskHolder(layoutInflater, parent, this.context);
+        return new TaskHolder(layoutInflater, parent, this.context, this);
     }
 
     @Override
@@ -54,9 +54,4 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter<TaskHolder> {
         }
         return newNumTasks;
     }
-
-    public void stopStopwatchForHolders(){
-
-    }
-
 }

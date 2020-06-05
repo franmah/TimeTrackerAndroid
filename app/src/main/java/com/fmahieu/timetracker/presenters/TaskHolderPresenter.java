@@ -1,13 +1,17 @@
 package com.fmahieu.timetracker.presenters;
 
-import com.fmahieu.timetracker.logic.TimeDateLogic.TimeOperationLogic;
+import android.util.Log;
+
+import com.fmahieu.timetracker.logic.TaskLogic;
+import com.fmahieu.timetracker.logic.TimeDateLogic.DateTimeOperationLogic;
 import com.fmahieu.timetracker.models.TimeHolder;
 import com.fmahieu.timetracker.models.singletons.Tasks;
 
 public class TaskHolderPresenter {
 
+    // TODO: replace tasks by a call to logic layer
     private Tasks tasks = Tasks.getInstance();
-    private TimeOperationLogic timeOperation = new TimeOperationLogic();
+    private DateTimeOperationLogic timeOperation = new DateTimeOperationLogic();
 
     public TaskHolderPresenter(){}
 
@@ -22,7 +26,7 @@ public class TaskHolderPresenter {
     }
 
     public long getCurrentTimeInMilliseconds(){
-        String time = timeOperation.getCurrentTime();
+        String time = timeOperation.getCurrentDateTime();
         TimeHolder timeHolder = timeOperation.convertTimeToTimeHolder(time);
         return convertTimeToMilliseconds(timeHolder);
     }
@@ -35,4 +39,8 @@ public class TaskHolderPresenter {
     }
 
 
+    public void deleteTask(String taskName) {
+        Log.i("__TaskHolderPresenter", "deleting task: " + taskName);
+        new TaskLogic().deleteTask(taskName);
+    }
 }

@@ -2,7 +2,7 @@ package com.fmahieu.timetracker.models.singletons;
 
 import android.util.Log;
 
-import com.fmahieu.timetracker.logic.TimeDateLogic.TimeOperationLogic;
+import com.fmahieu.timetracker.logic.TimeDateLogic.DateTimeOperationLogic;
 import com.fmahieu.timetracker.models.Task;
 
 import java.util.ArrayList;
@@ -34,6 +34,7 @@ public class Tasks {
         Log.i(TAG, "added a task, num of task: " + this.getNumberOfTasks());
     }
 
+    //TODO: remove most function and make a getTask method
     public String getStartTime(String taskName){
         if(tasksMap.containsKey(taskName)) {
             return tasksMap.get(taskName).getStartTime();
@@ -67,7 +68,7 @@ public class Tasks {
         }
     }
 
-    public List<String> getTasksName() {
+    public List<String> getTaskNames() {
         return new ArrayList<String>(tasksMap.keySet());
     }
 
@@ -76,7 +77,7 @@ public class Tasks {
     }
 
     public String printTasks(){
-        TimeOperationLogic logic = new TimeOperationLogic();
+        DateTimeOperationLogic logic = new DateTimeOperationLogic();
         StringBuilder strBuilder = new StringBuilder();
         for (Map.Entry<String,Task> entry : this.tasksMap.entrySet()){
             strBuilder.append(entry.getKey()).append(": ")
@@ -105,5 +106,15 @@ public class Tasks {
 
     public boolean isTaskRunning(String taskName){
         return tasksMap.get(taskName).isRunning();
+    }
+
+    public void removeTask(String taskName) {
+        if(tasksMap.containsKey(taskName)) {
+            tasksMap.remove(taskName);
+        }
+    }
+
+    public Task getTask(String name){
+        return tasksMap.get(name);
     }
 }

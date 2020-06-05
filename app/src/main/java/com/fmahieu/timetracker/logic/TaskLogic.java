@@ -2,14 +2,18 @@ package com.fmahieu.timetracker.logic;
 
 import android.util.Log;
 
+import com.fmahieu.timetracker.application.App;
 import com.fmahieu.timetracker.database.DAO.TaskDao;
+import com.fmahieu.timetracker.database.DAO.TimeDayDao;
+import com.fmahieu.timetracker.database.sqlite.TasksSqliteDao;
+import com.fmahieu.timetracker.database.sqlite.TimeDaysSqliteDao;
 import com.fmahieu.timetracker.logic.TimeDateLogic.DateOperationLogic;
 import com.fmahieu.timetracker.models.Task;
 import com.fmahieu.timetracker.models.singletons.Tasks;
 
 import java.util.List;
 
-import com.fmahieu.timetracker.logic.TimeDateLogic.TimeOperationLogic;
+import com.fmahieu.timetracker.logic.TimeDateLogic.DateTimeOperationLogic;
 
 /**
  * Handles logic to manipulate tasks (called activities within app)
@@ -17,15 +21,15 @@ import com.fmahieu.timetracker.logic.TimeDateLogic.TimeOperationLogic;
 public class TaskLogic {
     final private String TAG = "__TaskLogic";
 
-    private TimeOperationLogic timeOperationLogic;
+    private DateTimeOperationLogic timeOperationLogic;
     private DateOperationLogic dateOperationLogic;
     private Tasks tasks;
     private TaskDao taskDao;
 
     public TaskLogic(){
-        this.timeOperationLogic = new TimeOperationLogic();
+        this.timeOperationLogic = new DateTimeOperationLogic();
         this.dateOperationLogic = new DateOperationLogic();
-        this.taskDao = new TaskDao();
+        this.taskDao = new TasksSqliteDao();
         this.tasks = Tasks.getInstance();
     }
 
@@ -43,37 +47,8 @@ public class TaskLogic {
         return tasks.doesTaskExist(taskName);
     }
 
-    // TODO: move stopwatch functions to their own logic class (StopwatchLogic)
-    public void startStopwatchForTask(String taskName){
-        Log.i(TAG, "starting stopwatch for: " + taskName);
-
-        String currentTime = timeOperationLogic.getCurrentTime();
-        Log.i(TAG, "__TESTING: task started at : " + currentTime);
-        tasks.setStartTime(taskName, currentTime);
-    }
-
-    public void stopStopwatchForTask(String taskName){
-        Log.i(TAG, "stopping stopwatch for: " + taskName);
-
-        String endTime = timeOperationLogic.getCurrentTime();
-        String initialTime = tasks.getStartTime(taskName);
-        tasks.resetStartTime(taskName);
-
-        // find how long the timer has been running
-        String duration = timeOperationLogic.getDurationBetweenTwoTimes(initialTime, endTime);
-
-        String totalTime = tasks.getTotalTime(taskName);
-        totalTime = timeOperationLogic.convertStringToDuration(totalTime);
-
-        String newTotalDuration = timeOperationLogic.sumDurations(totalTime, duration);
-        newTotalDuration = timeOperationLogic.convertDurationToReadableString(newTotalDuration);
-
-        Log.i(TAG, "__TESTING: new total time of : " + newTotalDuration + " for task: " + taskName);
-        tasks.setTotalTime(taskName, newTotalDuration);
-    }
-
     public List<String> getTasksNames() {
-        return this.tasks.getTasksName();
+        return this.tasks.getTaskNames();
     }
 
     public int getNumberOfTasks() {
@@ -82,6 +57,12 @@ public class TaskLogic {
 
     public String getTaskTotalDurationAsReadableString(String taskName){
         return tasks.getTotalTime(taskName);
+    }
+
+    public void deleteTask(String taskName){
+        taskDao.deleteTask(taskName);
+        new TimeDaysSqliteDao(App.getContext()).deleteTimeDay(taskName);
+        tasks.removeTask(taskName);
     }
 
 

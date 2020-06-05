@@ -11,7 +11,9 @@ import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 
 import com.fmahieu.timetracker.logic.TaskLogic;
-import com.fmahieu.timetracker.logic.TimeDateLogic.TimeOperationLogic;
+import com.fmahieu.timetracker.logic.TimeDateLogic.DateTimeOperationLogic;
+import com.fmahieu.timetracker.logic.TimeDayLogic;
+import com.fmahieu.timetracker.models.TimeDay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,21 +21,10 @@ import java.util.List;
 public class ColumnChart {
 
     private TaskLogic taskLogic = new TaskLogic();
-    private TimeOperationLogic timeOperationLogic = new TimeOperationLogic();
+    private DateTimeOperationLogic timeOperationLogic = new DateTimeOperationLogic();
 
     public Cartesian getColumnChart(){
-        List<DataEntry> dataEntries = new ArrayList<>();
-        List<String> taskNames = taskLogic.getTasksNames();
-
-        String totalTime;
-        long totalTimeInSeconds;
-
-        for(int i = 0; i < taskNames.size(); i++){
-            totalTime = taskLogic.getTaskTotalDurationAsReadableString(taskNames.get(i));
-            totalTimeInSeconds = timeOperationLogic.getDurationAsSeconds(totalTime);
-            dataEntries.add(new ValueDataEntry(taskNames.get(i), totalTimeInSeconds));
-        }
-
+        List<DataEntry> dataEntries = getDataTimeDayCache();
         Cartesian cartesian = AnyChart.column();
         Column column = cartesian.column(dataEntries);
 
@@ -56,5 +47,32 @@ public class ColumnChart {
         cartesian.yAxis(0).title("Seconds");
 
         return cartesian;
+    }
+
+    public List<DataEntry> getDataFromTaskCache(){
+        List<DataEntry> dataEntries = new ArrayList<>();
+        List<String> taskNames = taskLogic.getTasksNames();
+
+        String totalTime;
+        long totalTimeInSeconds;
+
+        for(int i = 0; i < taskNames.size(); i++){
+            totalTime = taskLogic.getTaskTotalDurationAsReadableString(taskNames.get(i));
+            totalTimeInSeconds = timeOperationLogic.getDurationAsSeconds(totalTime);
+            dataEntries.add(new ValueDataEntry(taskNames.get(i), totalTimeInSeconds));
+        }
+        return dataEntries;
+    }
+
+    private List<DataEntry> getDataTimeDayCache(){
+        TimeDayLogic timeDayLogic = new TimeDayLogic();
+        List<TimeDay> timeDays = timeDayLogic.getTimeDaysFromCache();
+        List<DataEntry> dataEntries = new ArrayList<>();
+
+        for(int i = 0; i < timeDays.size(); i++){
+            TimeDay timeDay = timeDays.get(i);
+            dataEntries.add(new ValueDataEntry(timeDay.getTaskName(), timeDay.getTotalTime()));
+        }
+        return dataEntries;
     }
 }

@@ -32,14 +32,33 @@
                 android:layout_weight="1"
                 />
 
-            <TextView
-                android:id="@+id/timer_stopwatch_text_view"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="00:00:00"
-                android:textSize="18sp"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/timer_stopwatch_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="00:00:00"
+                        android:textSize="18sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/timer_totalTime_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="00:00:00"
+                        android:textSize="12sp"
+                        />
+
+
+            </LinearLayout>
+
 
             <ImageView
                 android:id="@+id/play_pause_timer_image_view"

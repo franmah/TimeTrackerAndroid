@@ -1,10 +1,15 @@
 package com.fmahieu.timetracker.logic.TimeDateLogic;
 
+import com.fmahieu.timetracker.logger.Logger;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+// TODO: only use TimeDateOperationLogic?
 public class DateOperationLogic {
 
+    private final String TAG = "__DateOperationLogic";
+    private Logger logger = new Logger();
     private DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
     public DateOperationLogic() {
@@ -40,5 +45,16 @@ public class DateOperationLogic {
 
     public String getDateOneMonthAgo(){
         return LocalDate.now().minusMonths(1).format(dateFormat);
+    }
+
+    public boolean verifyDateFormat(String date){
+        try{
+            LocalDate.parse(date, dateFormat);
+            return true;
+        }
+        catch (Exception e){
+            logger.logException(TAG, "date could not be verified", e);
+            return false;
+        }
     }
 }
