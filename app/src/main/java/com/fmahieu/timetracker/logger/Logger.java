@@ -4,7 +4,8 @@ import android.util.Log;
 
 public class Logger {
 
-    private boolean showDebug = false;
+    private boolean showDebug = true;
+    private boolean showMessage = true;
 
     /**
      * Logs for Test module
@@ -37,6 +38,8 @@ public class Logger {
     }
 
     public void logMessage(String tag, String message){
-        Log.i(tag, message);
+        if(showMessage){
+            Log.i(tag, message);
+        }
     }
 }

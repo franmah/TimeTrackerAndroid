@@ -14,7 +14,9 @@
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:indeterminate="true"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:id="@+id/test_progress_bar"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +29,7 @@
 
     <com.anychart.AnyChartView
         android:id="@+id/anyChart_view_pieChartFrag"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"

@@ -1,10 +1,6 @@
 package com.fmahieu.timetracker.presenters;
 
-import com.fmahieu.timetracker.application.App;
-import com.fmahieu.timetracker.database.DAO.TimeDayDao;
-import com.fmahieu.timetracker.database.sqlite.TimeDaysSqliteDao;
 import com.fmahieu.timetracker.logic.TimeDateLogic.DateOperationLogic;
-import com.fmahieu.timetracker.logic.TimeDayLogic;
 
 public class StatsSwipePresenter {
 
@@ -24,7 +20,7 @@ public class StatsSwipePresenter {
             return false;
         }
 
-        new TimeDayLogic().updateStatsCache(from, to);
+        //new TimeDayLogic().updateStatsCache(from, to);
         return true;
     }
 }

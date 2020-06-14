@@ -11,14 +11,18 @@ public class DummyTimeDay {
     public void addDummyData() {
         TimeDay timeDay;
         TimeDayDao dao = new TimeDaysSqliteDao(App.getContext());
-        timeDay = new TimeDay("02/01/2020", "long", 200);
+        timeDay = new TimeDay("06/01/2020", "long", 200);
         dao.addTimeDayEntry(timeDay);
-        timeDay = new TimeDay("01/01/2020", "long", 100);
+        timeDay = new TimeDay("06/01/2020", "medium", 100);
+        dao.addTimeDayEntry(timeDay);
+        timeDay = new TimeDay("06/01/2020", "short", 50);
         dao.addTimeDayEntry(timeDay);
 
-        timeDay = new TimeDay("01/20/2020","short" , 2);
+        timeDay = new TimeDay("06/20/2018","long" , 20);
         dao.addTimeDayEntry(timeDay);
-        timeDay = new TimeDay("02/20/2020", "short" , 1);
+        timeDay = new TimeDay("06/20/2019", "medium" , 10);
+        dao.addTimeDayEntry(timeDay);
+        timeDay = new TimeDay("06/01/2019", "short", 5);
         dao.addTimeDayEntry(timeDay);
     }
 }

@@ -14,11 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.fmahieu.timetracker.MockData.DummyTimeDay;
 import com.fmahieu.timetracker.R;
-import com.fmahieu.timetracker.logic.InitialSetupLogic;
-import com.fmahieu.timetracker.logic.TaskLogic;
-import com.fmahieu.timetracker.views.swipeViews.StatsSwipeFragment;
+import com.fmahieu.timetracker.views.statsFragments.StatsFragment;
+import com.fmahieu.timetracker.views.stopwatchViews.StopwatchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private FloatingActionButton addTaskButton;
 
     // tell fragmentManager which fragment should be displayed
-    private enum MenuViews {Stopwatch, Stats, Settings }
+    public enum MenuViews {Stopwatch, Stats, Settings }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +46,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         context = this;
 
         setTitle(R.string.stopwatch_title);
-
-        //TODO: delete testing
-        new DummyTimeDay().addDummyData();
 
         setViews();
         setFragment(MenuViews.Stopwatch);
@@ -73,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case Stats:
                 Log.i(TAG, "Getting stats fragment");
-                fragment = new StatsSwipeFragment();
+                fragment = new StatsFragment();
                 break;
         }
         fragmentManager.beginTransaction().replace(R.id.main_view_frameLayout,fragment).commit();
@@ -101,10 +96,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 this.addTaskButton.setVisibility(View.GONE);
                 setTitle(R.string.stats_title);
                 setFragment(MenuViews.Stats);
-                return true;
-            case R.id.settings_menu_item:
-                Intent intent = new Intent(this, TestActivity.class);
-                startActivity(intent);
                 return true;
         }
         return false;

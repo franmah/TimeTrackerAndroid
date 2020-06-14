@@ -56,4 +56,8 @@ public class OperationSqliteDao {
     public void delete(String tableName, String selection, String[] selectionArgs) {
         dbHelper.getWritableDatabase().delete(tableName, selection, selectionArgs);
     }
+
+    public Cursor rawQueryRead(String query, String[] args) {
+        return dbHelper.getReadableDatabase().rawQuery(query, args);
+    }
 }

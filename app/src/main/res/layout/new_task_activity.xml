@@ -15,12 +15,12 @@
         app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/task_name_TextInputEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
+            android:inputType="text"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

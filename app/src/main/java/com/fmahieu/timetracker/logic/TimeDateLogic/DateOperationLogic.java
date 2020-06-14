@@ -2,10 +2,11 @@ package com.fmahieu.timetracker.logic.TimeDateLogic;
 
 import com.fmahieu.timetracker.logger.Logger;
 
+import java.text.DateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-// TODO: only use TimeDateOperationLogic?
 public class DateOperationLogic {
 
     private final String TAG = "__DateOperationLogic";
@@ -56,5 +57,14 @@ public class DateOperationLogic {
             logger.logException(TAG, "date could not be verified", e);
             return false;
         }
+    }
+
+    public long getNumberOfDaysBetweenDates(String date1, String date2) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate d1 = LocalDate.parse(date1, formatter);
+        LocalDate d2 = LocalDate.parse(date2, formatter);
+
+        long numDays = Duration.between(d1.atStartOfDay(), d2.atStartOfDay()).toDays();
+        return numDays;
     }
 }

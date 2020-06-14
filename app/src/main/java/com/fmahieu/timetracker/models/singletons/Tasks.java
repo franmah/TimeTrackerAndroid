@@ -48,7 +48,7 @@ public class Tasks {
         }
     }
 
-    public void resetStartTime(String taskName){
+    public void resetStartTime(String taskName) {
         if(tasksMap.containsKey(taskName)){
             tasksMap.get(taskName).resetInitialTime();
         }
@@ -116,5 +116,15 @@ public class Tasks {
 
     public Task getTask(String name){
         return tasksMap.get(name);
+    }
+
+    public void changeTaskName(String oldName, String newName) {
+        Log.i(TAG, "changing " + oldName + " to " + newName);
+        if(tasksMap.containsKey(oldName)) {
+            Task task = tasksMap.get(oldName);
+            task.setName(newName);
+            removeTask(oldName);
+            addTask(task);
+        }
     }
 }

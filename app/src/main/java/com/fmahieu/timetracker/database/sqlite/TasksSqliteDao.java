@@ -41,18 +41,31 @@ public class TasksSqliteDao implements TaskDao {
         operationDao.insert(TasksContract.TABLE_NAME, values);
     }
 
-    @Override
-    public void updateTask(Task task) {
-        String duration = task.getTotalDuration();
-        String name = task.getName();
-
-        DateTimeOperationLogic dateTimeOperationLogic = new DateTimeOperationLogic();
-        long newTime = dateTimeOperationLogic.getDurationAsSeconds(duration);
+    public void updateTaskName(String oldName, String newName) {
 
         ContentValues values = new ContentValues();
-        values.put(TasksContract.COLUMN_NAME_TOTAL_TIME, newTime);
+        values.put(TasksContract.COLUMN_NAME_TASK_NAME, newName);
 
-        //Row to update
+        // which row to update
+        String selection = TasksContract.COLUMN_NAME_TASK_NAME + " LIKE ?";
+        String[] selectionArgs = {
+                oldName
+        };
+
+        operationDao.update(TasksContract.TABLE_NAME, values, selection, selectionArgs);
+    }
+
+    @Override
+    public void updateTask(Task task) {
+        logger.logMessage(TAG, "updating db for task: " + task.getName());
+        String duration = task.getTotalDuration();
+        String name = task.getName();
+        logger.logDebug(TAG, "duration of task: " + duration);
+
+        ContentValues values = new ContentValues();
+        values.put(TasksContract.COLUMN_NAME_TOTAL_TIME, duration);
+
+        // which row to update
         String selection = TasksContract.COLUMN_NAME_TASK_NAME + " LIKE ?";
         String[] selectionArgs = {
                 name
@@ -63,6 +76,7 @@ public class TasksSqliteDao implements TaskDao {
 
     @Override
     public List<Task> getAllTasks(){
+        logger.logMessage(TAG, "getting all tasks");
         try {
             String sortBy = TasksContract.COLUMN_NAME_TASK_NAME;
 
@@ -74,7 +88,7 @@ public class TasksSqliteDao implements TaskDao {
                 String taskName = result.getString(result.getColumnIndexOrThrow(TasksContract.COLUMN_NAME_TASK_NAME));
                 String dateCreated = result.getString(result.getColumnIndexOrThrow(TasksContract.COLUMN_NAME_DATE_CREATED));
                 String totalDuration = result.getString(result.getColumnIndexOrThrow(TasksContract.COLUMN_NAME_TOTAL_TIME));
-
+                logger.logDebug(TAG, "totalDuration from db: " + totalDuration);
                 tasks.add(new Task(taskName, dateCreated, totalDuration));
             }
             result.close();

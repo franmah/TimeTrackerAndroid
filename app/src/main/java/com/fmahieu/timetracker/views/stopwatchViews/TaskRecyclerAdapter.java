@@ -1,4 +1,4 @@
-package com.fmahieu.timetracker.views;
+package com.fmahieu.timetracker.views.stopwatchViews;
 
 import android.content.Context;
 import android.util.Log;
@@ -36,12 +36,12 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter<TaskHolder> {
     @Override
     public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-        return new TaskHolder(layoutInflater, parent, this.context, this);
+        return new TaskHolder(layoutInflater, parent, this);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
-        holder.bind(this.tasks.get(position));
+        holder.bind(this.tasks.get(position), context);
     }
 
     @Override

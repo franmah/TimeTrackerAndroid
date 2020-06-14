@@ -2,17 +2,10 @@ package com.fmahieu.timetracker.logic;
 
 import android.util.Log;
 
-import com.fmahieu.timetracker.application.App;
 import com.fmahieu.timetracker.database.DAO.TaskDao;
-import com.fmahieu.timetracker.database.DAO.TimeDayDao;
 import com.fmahieu.timetracker.database.sqlite.TasksSqliteDao;
-import com.fmahieu.timetracker.database.sqlite.TimeDaysSqliteDao;
-import com.fmahieu.timetracker.logic.TimeDateLogic.DateOperationLogic;
-import com.fmahieu.timetracker.models.TimeDay;
-import com.fmahieu.timetracker.models.singletons.StatsCache;
+import com.fmahieu.timetracker.logger.Logger;
 import com.fmahieu.timetracker.models.singletons.Tasks;
-
-import java.util.List;
 
 public class InitialSetupLogic {
 
@@ -20,29 +13,31 @@ public class InitialSetupLogic {
 
     private Tasks tasks;
     private TaskDao taskDao;
+    private Logger logger = new Logger();
 
     public InitialSetupLogic(){
-        tasks = Tasks.getInstance();
-        taskDao = new TasksSqliteDao();
+        try {
+            tasks = Tasks.getInstance();
+            taskDao = new TasksSqliteDao();
+        }
+        catch (Exception err) {
+            logger.logException(TAG, "error in constructor", err);
+        }
     }
 
-    public void loadTasks(){
-        Log.i(TAG, "loading tasks");
-        tasks.loadTasks(taskDao.getAllTasks());
+    public String loadTasks(){
+        try {
+            logger.logMessage(TAG, "pre-loading tasks");
+            tasks.loadTasks(taskDao.getAllTasks());
+            return null;
+        }
+        catch (Exception err) {
+            logger.logException(TAG, "Error when pre-loading tasks", err);
+            return "error when loading activities";
+        }
     }
 
-    public void loadStatsCache(){
-        DateOperationLogic dateOperationLogic = new DateOperationLogic();
-        String from =  dateOperationLogic.getCurrentDate();
-        String to = dateOperationLogic.getDateOneMonthAgo();
-
-        TimeDayDao dao = new TimeDaysSqliteDao(App.getContext());
-        List<TimeDay> timeDays = dao.getAllTimeDayBetweenDates(from, to);
-        StatsCache.getInstance().setTimeDays(timeDays);
-    }
-
-    public void loadData(){
-        loadTasks();
-        loadStatsCache();
+    public String loadData(){
+        return loadTasks();
     }
 }

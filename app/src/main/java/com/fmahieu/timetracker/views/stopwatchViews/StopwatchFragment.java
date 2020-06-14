@@ -1,4 +1,4 @@
-package com.fmahieu.timetracker.views;
+package com.fmahieu.timetracker.views.stopwatchViews;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fmahieu.timetracker.R;
+import com.fmahieu.timetracker.logger.Logger;
 import com.fmahieu.timetracker.models.singletons.Tasks;
 import com.fmahieu.timetracker.presenters.StopwatchFragmentPresenter;
+import com.fmahieu.timetracker.views.MainActivity;
 
 public class StopwatchFragment extends Fragment {
 
@@ -23,6 +25,7 @@ public class StopwatchFragment extends Fragment {
     private TaskRecyclerAdapter adapter;
     private Context context;
     private final String TAG = "__StopwatchFragment";
+    private Logger logger = new Logger();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class StopwatchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.timer_view_fragment, container, false);
+        View view = inflater.inflate(R.layout.stopwatch_view_fragment, container, false);
 
         this.recycler = view.findViewById(R.id.task_recycler_view);
         this.context = getContext();
@@ -69,7 +72,14 @@ public class StopwatchFragment extends Fragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStart() {
+        super.onStart();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 }

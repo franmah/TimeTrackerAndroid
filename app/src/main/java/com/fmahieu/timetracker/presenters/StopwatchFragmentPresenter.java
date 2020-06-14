@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 
 
 import com.fmahieu.timetracker.logic.InitialSetupLogic;
-import com.fmahieu.timetracker.views.StopwatchFragment;
+import com.fmahieu.timetracker.views.stopwatchViews.StopwatchFragment;
 
 public class StopwatchFragmentPresenter {
 

@@ -2,6 +2,7 @@ package com.fmahieu.timetracker.logic.TimeDateLogic;
 
 import android.util.Log;
 
+import com.fmahieu.timetracker.logger.Logger;
 import com.fmahieu.timetracker.models.TimeHolder;
 
 import java.time.Duration;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
  */
 public class DateTimeOperationLogic {
     private final String TAG = "__TimeOperationLogic";
+    private Logger logger = new Logger();
 
     public DateTimeOperationLogic(){}
 
@@ -60,6 +62,7 @@ public class DateTimeOperationLogic {
     public String convertDurationToReadableString(String durationStr){
         if(durationStr == null)
             return null;
+        logger.logDebug(TAG, "duration: " + durationStr);
         Duration duration = Duration.parse(durationStr);
 
         long hours = duration.toHours();
