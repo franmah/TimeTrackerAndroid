@@ -1,3 +1,13 @@
+ads id
+ca-app-pub-7820725826893212~7266443557
+
+main_activity_ads
+ca-app-pub-7820725826893212/8947669813
+
+test id
+ca-app-pub-3940256099942544/6300978111
+
+
 SQL tables
 
 

@@ -16,13 +16,11 @@
         android:icon="@drawable/ic_menu_filled_stats"
         />
 
-    <!--
     <item
-        android:id="@+id/settings_menu_item"
-        android:title="@string/settings_menu_string"
-        android:titleCondensed="@string/settings_menu_string"
-        android:icon="@drawable/ic_menu_filled_setting"
+        android:id="@+id/add_menu_item"
+        android:title="@string/add_menu_string"
+        android:titleCondensed="@string/add_menu_string"
+        android:icon="@drawable/ic_menu_add"
         />
-    -->
 
 </menu>

@@ -26,6 +26,10 @@
         <activity
             android:name=".views.TestActivity"
             android:label="@string/test_string" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7820725826893212~7266443557"/>
     </application>
 
 </manifest>

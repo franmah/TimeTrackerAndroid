@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fmahieu.timetracker.R;
@@ -39,7 +40,7 @@ public class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private LinearLayout stopwatchLayout;
 
     /** EDIT NAME VIEWS **/
-    private LinearLayout editLayout;
+    private ConstraintLayout editLayout;
     private TextInputLayout newNameTextInputLayout;
     private TextInputEditText newNameEditText;
     private Button deleteButton;
@@ -156,6 +157,7 @@ public class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickL
             public boolean onLongClick(View view) {
                 // hide stopwatch views and show edit views
                 stopwatchLayout.setVisibility(View.GONE);
+                newNameTextInputLayout.setHint(taskName);
                 editLayout.setVisibility(View.VISIBLE);
                 return true;
             }

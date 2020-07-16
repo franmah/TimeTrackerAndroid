@@ -13,7 +13,7 @@
     <string name="stopwatch_menu_string">Stopwatch</string>
     <string name="edit_menu_string">Edit</string>
     <string name="stats_menu_string">Stats</string>
-    <string name="settings_menu_string">Settings</string>
+    <string name="add_menu_string">Add</string>
     <string name="info_menu_string">Info</string>
 
     <!-- TaskHolder -->

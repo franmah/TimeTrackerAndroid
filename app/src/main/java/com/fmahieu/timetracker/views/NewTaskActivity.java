@@ -7,11 +7,17 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fmahieu.timetracker.R;
+import com.fmahieu.timetracker.logger.Logger;
 import com.fmahieu.timetracker.logic.TaskLogic;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -20,10 +26,14 @@ public class NewTaskActivity extends AppCompatActivity {
     private final String TAG = "__NewTaskActivity";
 
     private TaskLogic taskLogic;
+    private Logger logger = new Logger();
 
+    /** VIEWS **/
     private TextInputLayout taskNameTextInputLayout;
     private TextInputEditText taskNameEditText;
     private FloatingActionButton submitNewTaskButton;
+    private AdView adView;
+    private ProgressBar adProgressBar;
 
     private final String NAME_TOO_LONG_ERROR = "Name too long (should be less than 20 character)";
     private final String NAME_ALREADY_EXISTS_ERROR = "Name already exists";
@@ -32,11 +42,11 @@ public class NewTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "NewTaskActivity started");
 
         setContentView(R.layout.new_task_activity);
         taskLogic = new TaskLogic();
 
+        setupAdView();
         setUpWidgets();
     }
 
@@ -59,7 +69,6 @@ public class NewTaskActivity extends AppCompatActivity {
         this.submitNewTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String text = taskNameEditText.getText().toString().trim();
 
                 if(isTaskNameValid(text)){
@@ -74,8 +83,56 @@ public class NewTaskActivity extends AppCompatActivity {
         });
     }
 
+    private void setupAdView() {
+        adProgressBar = findViewById(R.id.ad_progressBar_newActivity);
+        adView = findViewById(R.id.adView_newActivity);
+        //adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111"); // TODO: change test id to real
+        //adView.setAdUnitId("ca-app-pub-7820725826893212/7152507882"); // real id
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                logger.logDebug(TAG, "ad loaded");
+                adProgressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                logger.logError(TAG, "ad failed to load: error code: " + errorCode);
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        });
+    }
+
     private void addNewTask(String taskName) {
-        taskLogic.addTask(taskName);
+        String error = taskLogic.addTask(taskName);
+        if (error != null) {
+            makeToast(error);
+        }
         setResult();
     }
 
@@ -108,5 +165,10 @@ public class NewTaskActivity extends AppCompatActivity {
     public void onBackPressed(){
         finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    private void makeToast(String message){
+        logger.logMessage(TAG, "making toast: " + message);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
